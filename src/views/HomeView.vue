@@ -4,24 +4,18 @@
 
     <div id="home-container">
       <div>
-        <h2>SideBar</h2>
-        <!-- Here SideBar Component add the event listener as well-->
-        <!-- How to use emit https://vuejs.org/guide/components/events.html#emitting-and-listening-to-events -->
+        <SideBar @menu-event="showMenuOptionSelected"/>
       </div>
 
       <div>
-        <h2>Home (menus y pedido)</h2>
-        <!-- Here Home v-if="menu.home" add the event listener as well-->
-
-        <!-- Also here add our Menu Options with the show conditions-->
-        <!-- BeverageMenu -->
-        <!-- SnackMenu -->
-        <!-- OrderOnline -->
+        <Home v-if="menu.home" v-on:menuEvent="showMenuOptionSelected"/>
+        <beverage-menu v-if="menu.beverage"/>
+        <snack-menu v-if="menu.snacks"/>
+        <order-online v-if="menu.order"/>
       </div>
 
       <div id="div-banner">
-        <h2>Banner</h2>
-        <!-- Here Banner -->
+        <banner-comp/>
       </div>
     </div>
 
@@ -32,21 +26,24 @@
 <script>
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-// import BeverageMenu, SnackMenu, OrderOnline
-// import Banner
-// import here SideBar and Home
+import SideBar from "@/components/SideBar";
+import Home from "@/components/Home";
+import BannerComp from "@/components/Banner";
+import BeverageMenu from "@/components/BeverageMenu";
+import SnackMenu from "@/components/SnackMenu";
+import OrderOnline from "@/components/OrderOnline";
 
 export default {
   name: "HomeView",
   components: {
+    OrderOnline,
+    SnackMenu,
+    BeverageMenu,
+    BannerComp,
+    SideBar,
     Header,
     Footer,
-    // SideBar,
-    // Home,
-    // Banner,
-    // BeverageMenu,
-    // SnackMenu,
-    // OrderOnline
+    Home,
   },
   data() {
     return {
